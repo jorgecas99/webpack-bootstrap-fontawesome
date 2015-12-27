@@ -12,7 +12,8 @@ require("file?name=../[name].html!./index.html");
 import 'bootstrap/dist/css/bootstrap.css';
 
 // FontAwesome 4.x
-//import 'bootstrap/dist/css/bootstrap.css';
+//import 'font-awesome/css/font-awesome.css';
+require('font-awesome-webpack');
 
 require('./css/ladda-themeless.min.css');
 require('./css/navbar-fixed-top.css');

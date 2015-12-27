@@ -8,7 +8,8 @@ module.exports =
         entry: {
                 main:'./src/index.js',
                     'vendor-bundle1': [ 
-                                'bootstrap-webpack!./bootstrap.config.js', 
+                                'bootstrap-webpack!./bootstrap.config.js',
+                                'font-awesome-webpack!./font-awesome.config.js',
                                 './src/vendor/spin.min.js', 
                                 './src/vendor/ladda.min.js', 
                                 './src/vendor/ie10-viewport-bug-workaround.js', 
@@ -44,7 +45,11 @@ module.exports =
                 { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
                 { test: /\.(woff|woff2)$/, loader:"url?prefix=font/&limit=5000" },
                 { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
-                { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" }
+                { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
+                
+                { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
+                { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
+
             ]
         },
         externals: {},
