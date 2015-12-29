@@ -6,7 +6,7 @@ module.exports =
     {
         name: "browser",
         entry: {
-                main:'./src/index.js',
+                javascript:'./src/index.js',
                     'vendor-bundle1': [ 
                                 'bootstrap-webpack!./bootstrap.config.js',
                                 'font-awesome-webpack!./font-awesome.config.js',
@@ -14,7 +14,7 @@ module.exports =
                                 './src/vendor/ladda.min.js', 
                                 './src/vendor/ie10-viewport-bug-workaround.js', 
                                 './src/vendor/ie-emulation-modes-warning.js'
-                                ]
+                                ] 
         },
         output: {
             path: './public/js/',
@@ -37,7 +37,7 @@ module.exports =
                   }
                 ],
             loaders: [
-                // { test: /\.(html)$/, loader: 'file-loader?name=./[name].html!./src/[name].[ext]' },
+                // { test: /\.(html)$/, loader: 'file-loader' },
                 { test: /bootstrap\/js\//, loader: 'imports?jQuery=jquery' },
                 { test: /\.jsx?$/, exclude: /(node_modules|bower_components)/, loader: 'babel' },
                 { test: /\.css$/, loader: 'style-loader!css-loader' }, //, include: path.join(__dirname, 'src/css')},
@@ -57,7 +57,7 @@ module.exports =
             
             new webpack.HotModuleReplacementPlugin(),
             new webpack.NoErrorsPlugin(),
-            //new HtmlwebpackPlugin({ title: 'Kanban app' }),
+            //new HtmlwebpackPlugin({ title: 'app' }),
             new webpack.optimize.CommonsChunkPlugin({ 
                                                         name: "vendor-bundle1", 
                                                         chunks: ['bundle1'],
@@ -67,12 +67,6 @@ module.exports =
         ],
         devServer: {
             historyApiFallback: true,
-            //historyApiFallback: {
-            //     index: 'default.html',
-            //     rewrites: [
-            //       { from: /\/soccer/, to: '/soccer.html'}
-            //     ]
-            //   },
             hot: true,
             inline: true,
             progress: true,
@@ -81,9 +75,14 @@ module.exports =
             stats: 'errors-only',
             contentBase: 'public/',
             outputPublicPath: './public/js/',
-            // parse host and port from env so this is easy
-            // to customize
-            port: 8000, //process.env.PORT,
+            historyApiFallback: {
+                index: 'home.html',
+                rewrites: [
+                  { from: /\/soccer/, to: '/soccer.html'},
+                  { from: /\/another/, to: '/another.html'}
+                ]
+            },
+            port: 8000, 
             // Example of how to add domain and authentication using config file
             proxy: {
                 //'/some/path*': {
